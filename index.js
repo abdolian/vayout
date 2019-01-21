@@ -14,7 +14,7 @@ function plugin (Vue, options) {
     }
 
     options         = options         || {};
-    options.name    = options.name    || 'vue-layouts';
+    options.name    = options.name    || 'vayout';
     options.default = options.default || 'default';
     options.layouts = options.layouts || {};
     options.prefix  = options.prefix  || 'layout-';
