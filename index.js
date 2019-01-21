@@ -64,6 +64,8 @@ export default function plugin (Vue, options) {
         layouts[key] = init(key);
     }
 
+    let ready = false;
+
     Vue.component(
         options.name,
         {
