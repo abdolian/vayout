@@ -2,7 +2,7 @@
  * vue-layouts | v1.0.0
  */
 
-function plugin (Vue, options) {
+export default function plugin (Vue, options) {
 
     if (options && options.constructor !== Object) throw 'Options must be a object';
 
