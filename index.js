@@ -115,7 +115,12 @@ export default function plugin (Vue, options) {
             },
             render: function(createElement) {
 
-                createElement('div');
+                if(!ready){
+
+                    ready = true;
+
+                    return createElement('router-view');
+                }
 
                 let result = '___CHILD___';
 
