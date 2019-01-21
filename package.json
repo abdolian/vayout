@@ -1,0 +1,33 @@
+{
+  "name": "vayout",
+  "version": "1.0.0",
+  "description": "Lightweight layout resolver for Vue Router.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abdolian/vayout.git"
+  },
+  "keywords": [
+    "vue",
+    "vuejs",
+    "vue.js",
+    "layout",
+    "layouts",
+    "vue-layout",
+    "vue-layouts",
+    "router",
+    "vue-router",
+    "navigation",
+    "spa",
+    "app-layout"
+  ],
+  "author": "Masood Abdolian <m.andolian@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abdolian/vayout/issues"
+  },
+  "homepage": "https://github.com/abdolian/vayout#readme"
+}
