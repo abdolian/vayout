@@ -1,6 +1,6 @@
 {
   "name": "vayout",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Lightweight layout resolver for Vue Router.",
   "main": "index.js",
   "scripts": {
