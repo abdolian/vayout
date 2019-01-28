@@ -1,4 +1,4 @@
-# vayout
+#vayout
 Lightweight layout resolver for Vue Router.
 
 #Installation
@@ -98,7 +98,7 @@ layouts/Default.vue
 </template>
 ```
 #Options
-````
+```
 Vue.use(Vayout, {
     layouts: {
         ...
@@ -106,7 +106,38 @@ Vue.use(Vayout, {
     name   : 'vayout',         // component name
     default: 'default',        // default layout
 });
-````
+```
+
+#Layout for Layout
+layouts/Parent.vue
+```
+<template>
+    <div>
+        <h1>
+            Parent layout
+        </h1>
+        <slot/>
+    </div>
+</template>
+```
+
+layouts/Child.vue
+```
+<template>
+    <div>
+        <h1>
+            Child layout
+        </h1>
+        <slot/>
+    </div>
+</template>
+
+<script>
+    export default {
+        layout: 'parent'
+    }
+</script>
+```
     
 #License
 MIT
