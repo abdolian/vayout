@@ -1,12 +1,12 @@
 # vayout
 Lightweight layout resolver for Vue Router.
 
-#Installation
+# Installation
 ```
 npm install vayout
 ```
 
-#Usage
+# Usage
 main.js
 ```
 import Vue from 'vue'
@@ -97,7 +97,7 @@ layouts/Default.vue
     </div>
 </template>
 ```
-#Options
+# Options
 ```
 Vue.use(Vayout, {
     layouts: {
@@ -108,7 +108,7 @@ Vue.use(Vayout, {
 });
 ```
 
-#Layout for Layout
+# Layout for Layout
 layouts/Parent.vue
 ```
 <template>
@@ -139,5 +139,5 @@ layouts/Child.vue
 </script>
 ```
     
-#License
+# License
 MIT
