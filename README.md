@@ -1,4 +1,4 @@
-#vayout
+# vayout
 Lightweight layout resolver for Vue Router.
 
 #Installation
