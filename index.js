@@ -1,14 +1,5 @@
 export default function plugin (Vue, options) {
 
-    if (options && options.constructor !== Object) throw 'Options must be a object';
-
-    if (process.env.NODE_ENV !== 'production' && plugin.installed) {
-
-        console.warn('already installed.');
-
-        return;
-    }
-
     options         = options         || {};
     options.name    = options.name    || 'vayout';
     options.default = options.default || 'default';
@@ -60,37 +51,46 @@ export default function plugin (Vue, options) {
         layouts[key] = init(key);
     }
 
-    let ready = false;
-
     Vue.component(
         options.name,
         {
             computed: {
-                layout: function() {
+                layout: {
+                    get: function() {
 
-                    let result;
+                        let result;
 
-                    for (let i = 0; i < options.source.length; i++) {
+                        for (let i = 0; i < options.source.length; i++) {
 
-                        try {
+                            try {
 
-                            if (result) break;
+                                if (result) break;
 
-                            let item = options.source[i];
+                                let item = options.source[i];
 
-                            item = item.charAt(0).toUpperCase() + item.slice(1);
+                                item = item.charAt(0).toUpperCase() + item.slice(1);
 
-                            result = this[`getFrom${item}`]();
-                        } catch (error) {
-                            /**/
+                                result = this[`getFrom${item}`]();
+                            }
+                            catch (error) {
+                                /**/
+                            }
                         }
-                    }
 
-                    result = result || options.default || '';
+                        result = result || options.default || '';
 
-                    result = result.toLowerCase();
+                        result = result.toLowerCase();
 
-                    return (result || undefined);
+                        return (result || undefined);
+                    },
+                },
+                routes(){
+
+                    return this.$router.options.routes;
+                },
+                ready(){
+
+                    return this.$route.name;
                 }
             },
             methods: {
@@ -104,25 +104,22 @@ export default function plugin (Vue, options) {
                 },
                 getFromRoute: function() {
 
-                    const routes = this.$router.options.routes;
-
-                    const route = routes.filter((item) => item.name === this.$route.name)[0];
+                    const route = this.routes.filter((item) => item.name === this.$route.name)[0];
 
                     return route.layout;
                 }
             },
             render: function(createElement) {
 
-                if(!ready){
-
-                    ready = true;
-
-                    return createElement('router-view');
-                }
+                if(!this.ready) return createElement('div');
 
                 let result = '___CHILD___';
 
+                if(!this.layout) throw new Error('layout undefined');
+
                 const items = layouts[this.layout];
+
+                if(this.layout && !items) throw new Error('layout "' + this.layout + '" not defined');
 
                 for (let i = 0; i < items.length; i++) {
 
@@ -137,9 +134,25 @@ export default function plugin (Vue, options) {
             }
         }
     );
-}
 
-if (typeof window !== 'undefined' && window.Vue) {
-
-    window.Vue.use(plugin);
+    // Vue.mixin({
+    //     methods: {
+    //         $vayout: function() {
+    //
+    //             let element = this;
+    //
+    //             while (element.layout || element.$parent){
+    //
+    //                 if(element.layout){
+    //
+    //                     break;
+    //                 }
+    //                 else{
+    //
+    //                     element = element.$parent;
+    //                 }
+    //             }
+    //         }
+    //     },
+    // });
 }
