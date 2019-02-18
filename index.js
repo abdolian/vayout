@@ -1,4 +1,4 @@
-export default function plugin (Vue, options) {
+export default function (Vue, options) {
 
     options         = options         || {};
     options.name    = options.name    || 'vayout';
@@ -8,6 +8,8 @@ export default function plugin (Vue, options) {
     options.suffix  = options.suffix  || '';
     options.source  = options.source  || ['component', 'meta', 'route'];
 
+    let layouts = {};
+
     const getComponentName = function(name){
 
         return (options.prefix || '') + name.toLowerCase() + (options.suffix || '');
@@ -15,26 +17,20 @@ export default function plugin (Vue, options) {
 
     for (let key in options.layouts) {
 
-        options.layouts[key.toLowerCase()] = options.layouts[key];
+        const newKey = key.toLowerCase();
 
-        // delete options.layouts[key];
+        layouts[newKey] = options.layouts[key].default || options.layouts[key];
 
-        key = key.toLowerCase();
-
-        options.layouts[key] = options.layouts[key].default || options.layouts[key];
-
-        Vue.component(getComponentName(key), options.layouts[key]);
+        Vue.component(getComponentName(newKey), layouts[newKey]);
     }
 
-    const layouts = {};
+    options.layouts = layouts;
 
     const init = function(name) {
 
         name = (name || '').toLowerCase();
 
-        const layouts = options.layouts || {};
-
-        const layout = layouts[name] || {};
+        const layout = options.layouts[name] || {};
 
         if (layout.layout) {
 
