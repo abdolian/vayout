@@ -1,5 +1,5 @@
 # vayout
-Lightweight layout resolver for Vue Router.
+Lightweight layout resolver for Vue Router and extend the default layout or create custom layouts for your SPA Vue.js
 
 # Installation
 ```

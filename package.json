@@ -1,6 +1,6 @@
 {
   "name": "vayout",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "Lightweight layout resolver for Vue Router and extend the default layout or create custom layouts for your SPA Vue.js",
   "main": "index.js",
   "scripts": {
