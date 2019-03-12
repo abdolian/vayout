@@ -1,7 +1,7 @@
 {
   "name": "vayout",
-  "version": "1.0.8",
-  "description": "Lightweight layout resolver for Vue Router. Create a multiple layout system for Vue",
+  "version": "1.0.9",
+  "description": "Lightweight layout resolver for Vue Router and extend the default layout or create custom layouts for your SPA Vue.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
